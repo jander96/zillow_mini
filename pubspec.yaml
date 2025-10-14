@@ -27,6 +27,7 @@ dependencies:
   flutter_dotenv: ^5.2.1
   infinite_scroll_pagination: ^5.0.0
   cached_network_image: ^3.4.1
+  flutter_svg: ^2.2.1
 
 
 dev_dependencies:
@@ -41,8 +42,28 @@ dev_dependencies:
   flutter_gen_runner: ^5.10.0
   mockito: ^5.4.6
   http_mock_adapter: ^0.6.1
+  flutter_launcher_icons: "^0.14.4"
 
 flutter:
 
   uses-material-design: true
+  assets:
+    - assets/fonts/
+    - .env
+
+
+  fonts:
+    - family: Outfit
+      fonts:
+        - asset: assets/fonts/Outfit-VariableFont_wght.ttf
+
+
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/ic_launcher.png"
+  min_sdk_android: 21
+
+
 

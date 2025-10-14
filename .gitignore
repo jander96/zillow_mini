@@ -50,3 +50,5 @@ app.*.map.json
 **/*.graphql.dart
 **/*.config.dart
 **/*.mocks.dart
+
+.env
