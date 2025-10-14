@@ -69,7 +69,7 @@ class PropertyImage extends StatelessWidget {
             height: 250,
             fit: BoxFit.cover,
             width: double.infinity,
-            placeholder: (context, url) => Center(child: CircularProgressIndicator.adaptive(strokeWidth: 1,)),
+            placeholder: (context, url) => Center(child: CircularProgressIndicator.adaptive(strokeWidth: 1)),
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
         ),
@@ -96,9 +96,11 @@ class _TitleAndPrice extends StatelessWidget {
         Expanded(
           child: Text(
             title,
-            style: Theme.of(
-              context,
-            ).textTheme.titleLarge!.copyWith(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSurface,
+            ),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),
@@ -186,7 +188,10 @@ class _OtherFacilitiesButton extends StatelessWidget {
           height: 30,
           width: 30,
           alignment: Alignment.center,
-          decoration: BoxDecoration(color: Theme.of(context).colorScheme.onSurfaceVariant, borderRadius: BorderRadius.circular(15)),
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+            borderRadius: BorderRadius.circular(15),
+          ),
           child: Text(
             '+$count',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSecondary),

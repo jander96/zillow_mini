@@ -6,12 +6,6 @@ extension DeveloperContact on BuildContext {
       SnackBar(
         content: Text('janderdeveloper@gmail.com'),
         backgroundColor: Theme.of(this).colorScheme.primaryContainer,
-        action: SnackBarAction(
-          label: 'Go',
-          onPressed: () {
-            ScaffoldMessenger.of(this).hideCurrentSnackBar();
-          },
-        ),
       ),
     );
   }
