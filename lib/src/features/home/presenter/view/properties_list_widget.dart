@@ -18,12 +18,13 @@ class _PropertiesListWidgetState extends State<PropertiesListWidget> {
   Widget build(BuildContext context) {
     return PagingListener(
       controller: widget.pagingController,
-      builder: (context, state, fetchNextPage) => PagedListView<int, PropertyUI>(
+      builder: (context, state, fetchNextPage) => PagedSliverList<int, PropertyUI>.separated(
         state: state,
         fetchNextPage: fetchNextPage,
         builderDelegate: PagedChildBuilderDelegate(
-          itemBuilder: (context, property, index) => PropertyCard(property: property, onTap: widget.onPropertyClick),
-        ),
+          animateTransitions: true,
+          itemBuilder: (context, property, index) => PropertyCard(propertyUI: property, onTap: widget.onPropertyClick),
+        ), separatorBuilder: (BuildContext context, int index) =>SizedBox.square(dimension: 8,),
       ),
     );
   }

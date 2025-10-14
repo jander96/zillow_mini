@@ -6,6 +6,6 @@ typedef PropertiesEither = Either<AppError, List<Property>>;
 typedef PropertyEither = Either<AppError, Property>;
 
 abstract class PropertyRepo {
-  Future<List<Property>> getProperties({int? page, int? limit, String? title});
+  Future<List<Property>> getProperties({int? page, int? limit, String? query});
   Future<PropertyEither> getProperty(String id);
 }

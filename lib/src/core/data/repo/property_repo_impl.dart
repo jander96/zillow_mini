@@ -9,10 +9,15 @@ class PropertyRepoImp extends PropertyRepo with ErrorHandler {
   final Client client;
 
   PropertyRepoImp({required this.client});
+
   @override
-  Future<List<Property>> getProperties({int? page, int? limit, String? title}) async {
-      final response = await client.getProperties(page, limit, title);
-      return response.map((e) => e.toDomain()).toList();
+  Future<List<Property>> getProperties({int? page, int? limit, String? query}) async {
+    final response = await client.getProperties(
+      page: page,
+      limit: limit,
+      title: query?.isEmpty ?? false ? null : query,
+    );
+    return response.map((e) => e.toDomain()).toList();
   }
 
   @override
@@ -20,7 +25,6 @@ class PropertyRepoImp extends PropertyRepo with ErrorHandler {
     return runCatching(() async {
       final response = await client.getProperty(id);
       return response.toDomain();
-    },);
+    });
   }
-
 }

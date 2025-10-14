@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:flutter_svg/svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:zillow_mini/resources/resources.dart' show AppIcons;
@@ -18,6 +20,10 @@ class PropertyUI {
   final String id;
   final PropertyType type;
   final SvgPicture typeIcon;
+  final int bedrooms;
+  final int bathrooms;
+  final int laundryRoom;
+  final int otherFacilities;
 
   const PropertyUI({
     required this.title,
@@ -30,6 +36,10 @@ class PropertyUI {
     required this.id,
     required this.type,
     required this.typeIcon,
+    required this.bedrooms,
+    required this.bathrooms,
+    required this.laundryRoom,
+    required this.otherFacilities,
 
   });
 
@@ -54,6 +64,10 @@ class PropertyUI {
       PropertyType.loft => SvgPicture.asset(AppIcons.loftBuildingSvgrepoCom),
       PropertyType.cabin => SvgPicture.asset(AppIcons.cabinSvgrepoCom),
       PropertyType.farmHouse => SvgPicture.asset(AppIcons.ecologyEnergyHouseFarmHouseGreenHouseSvgrepoCom),
-    }
+    },
+    bedrooms: Random().nextInt(10) +1,
+    bathrooms: Random().nextInt(10) +1,
+    laundryRoom: Random().nextInt(10) +1,
+    otherFacilities: Random().nextInt(10) +1,
   );
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zillow_mini/environments.dart';
 
 import 'data/network/api/client.dart';
@@ -13,6 +14,9 @@ abstract class ApiClientModule {
 
   @lazySingleton
   Client provideApiClient(Dio dio) => Client(dio);
+
+  @lazySingleton
+  SharedPreferencesAsync get sharePreferences => SharedPreferencesAsync();
 }
 
 Dio _createDio() {

@@ -10,16 +10,22 @@ class HomeViewModel extends Cubit<PagingState<int, PropertyUI>> {
   }
 
   final PropertyRepo _repo;
+  String? _query;
 
   late final pagingController = PagingController<int, PropertyUI>(
     getNextPageKey: (state) => state.lastPageIsEmpty ? null : state.nextIntPageKey,
-    fetchPage: (pageKey) async => (await _repo.getProperties(page: pageKey, limit: 10)).map((_toUI)).toList(),
+    fetchPage: (pageKey) async => (await _repo.getProperties(page: pageKey, limit: 10, query: _query)).map((_toUI)).toList(),
   );
 
   PropertyUI _toUI(Property property) => PropertyUI.fromDomain(property);
 
   void _updateState() {
     emit(pagingController.value);
+  }
+
+  void search(String query) {
+    _query = query;
+    pagingController.refresh();
   }
 
   @override
