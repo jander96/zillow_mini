@@ -74,7 +74,7 @@ class PropertyImage extends StatelessWidget {
           ),
         ),
 
-        Positioned(top: 10, right: 10, child: AnimatedFavoriteIcon(propertyId: propertyId)),
+        Positioned(top: 10, right: 10, child: AnimatedFavoriteIconProvider(propertyId: propertyId)),
       ],
     );
     ;

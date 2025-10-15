@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:zillow_mini/src/features/home/presenter/view/home_page.dart';
 import 'package:zillow_mini/src/features/property_detail/presenter/view/detail_page.dart';
@@ -22,13 +23,44 @@ final goRouter = GoRouter(
         GoRoute(
           name: AppRoute.detail.name,
           path: AppRoute.detail.path,
-          builder: (context, state) {
+          pageBuilder: (context, state) {
             final id = state.pathParameters['property_id'];
             if (id == null) throw Exception("No value passed to property_id");
-            return PropertyDetailPage(propertyId: id);
+            return buildSlideUpPage(
+              context: context,
+              state: state,
+              child: PropertyDetailPage(propertyId: id),
+            );
           },
         ),
       ],
     ),
   ],
 );
+
+
+CustomTransitionPage buildSlideUpPage({
+  required BuildContext context,
+  required GoRouterState state,
+  required Widget child,
+}) {
+  return CustomTransitionPage<void>(
+    key: state.pageKey,
+    child: child,
+    transitionDuration: const Duration(milliseconds: 400),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      const begin = Offset(0.0, 1.0);
+      const end = Offset.zero;
+      final tween = Tween(begin: begin, end: end);
+      final curvedAnimation = CurvedAnimation(
+        parent: animation,
+        curve: Curves.easeOutCubic,
+      );
+
+      return SlideTransition(
+        position: tween.animate(curvedAnimation),
+        child: child,
+      );
+    },
+  );
+}

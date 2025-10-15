@@ -12,6 +12,18 @@ class _ClampedCurve extends Curve {
   double transform(double t) => (_curve.transform(t)).clamp(0.0, 1.0);
 }
 
+class AnimatedFavoriteIconProvider extends StatelessWidget {
+  const AnimatedFavoriteIconProvider({super.key, required this.propertyId});
+  final String propertyId;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(create: (context)=> FavoritesViewModel(propertyId, getIt.get()),
+    child: AnimatedFavoriteIcon(propertyId: propertyId));
+  }
+}
+
+
 class AnimatedFavoriteIcon extends StatefulWidget {
   const AnimatedFavoriteIcon({super.key, required this.propertyId});
 
@@ -25,7 +37,6 @@ class _AnimatedFavoriteIconState extends State<AnimatedFavoriteIcon>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _scaleAnimation;
-  late final _bloc = FavoritesViewModel(widget.propertyId, getIt.get());
 
   @override
   void initState() {
@@ -47,20 +58,18 @@ class _AnimatedFavoriteIconState extends State<AnimatedFavoriteIcon>
 
   @override
   void dispose() {
-    _bloc.close();
     _controller.dispose();
     super.dispose();
   }
 
   void _onToggle() {
     _controller.forward(from: 0);
-    _bloc.add(FavoriteToggle());
+    context.read<FavoritesViewModel>().add(FavoriteToggle());
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FavoritesViewModel, FavoriteState>(
-      bloc: _bloc,
       builder: (context, state) {
         bool isFavorite = false;
 

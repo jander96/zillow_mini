@@ -40,7 +40,7 @@ class PropertyAppBar extends StatelessWidget {
               itemBuilder: (context, index) {
                 return CachedNetworkImage(
                   fit: BoxFit.cover,
-                  imageUrl: index == 0 ? image : 'https://picsum.photos/600/400?random=$index',
+                  imageUrl: index == 0 ? image : 'https://picsum.photos/600/400?random=${index * int.parse(propertyId)}',
                 );
               },
             ),
@@ -81,7 +81,7 @@ class PropertyAppBar extends StatelessWidget {
       actions: [
         Padding(
           padding: const EdgeInsets.only(top: 8.0, right: 8.0),
-          child: AnimatedFavoriteIcon(propertyId: propertyId),
+          child: AnimatedFavoriteIconProvider(propertyId: propertyId),
         ),
       ],
     );
