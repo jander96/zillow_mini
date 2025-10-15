@@ -27,35 +27,38 @@ class HomeContent extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: CustomScrollView(
-            slivers: [
-              SliverToBoxAdapter(child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(onPressed: (){
-                    context.showDeveloperContact();
-                  }, icon:  Icon(Icons.menu)),
-                  ProfileAvatar()
+          child: RefreshIndicator(
+            onRefresh: () async => context.read<HomeViewModel>().pagingController.refresh(),
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(onPressed: (){
+                      context.showDeveloperContact();
+                    }, icon:  Icon(Icons.menu)),
+                    ProfileAvatar()
 
-                ],
-              )),
-              SliverToBoxAdapter(child: SizedBox(height: 16),),
-              SliverPersistentHeader(delegate: TitlePersistenceHeader()),
-              SliverFloatingHeader(
-                snapMode: FloatingHeaderSnapMode.overlay,
-                child: AppSearchBar(
-                  onSearch: (query) {
-                    context.read<HomeViewModel>().search(query);
+                  ],
+                )),
+                SliverToBoxAdapter(child: SizedBox(height: 16),),
+                SliverPersistentHeader(delegate: TitlePersistenceHeader()),
+                SliverFloatingHeader(
+                  snapMode: FloatingHeaderSnapMode.overlay,
+                  child: AppSearchBar(
+                    onSearch: (query) {
+                      context.read<HomeViewModel>().search(query);
+                    },
+                  ),
+                ),
+                PropertiesListWidget(
+                  pagingController: context.read<HomeViewModel>().pagingController,
+                  onPropertyClick: (property) {
+                    context.goNamed(AppRoute.detail.name, pathParameters: {'property_id': property.id});
                   },
                 ),
-              ),
-              PropertiesListWidget(
-                pagingController: context.read<HomeViewModel>().pagingController,
-                onPropertyClick: (property) {
-                  context.goNamed(AppRoute.detail.name, pathParameters: {'property_id': property.id});
-                },
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

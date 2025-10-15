@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zillow_mini/src/core/data/app_error.dart';
 import 'package:zillow_mini/src/features/favorites/domain/favorites_repo.dart';
@@ -7,10 +9,20 @@ class FavoritesViewModel extends Bloc<FavoriteEvent, FavoriteState> {
     on<FavoriteStarted>(_getValue);
     on<FavoriteToggle>(_toggle);
     add(FavoriteStarted());
+    _listen();
   }
 
+  StreamSubscription<String?>? _subscription;
   final FavoritesRepo _repo;
   final String _id;
+
+  void _listen() {
+    _subscription = _repo.lastChange.listen((lastChange) {
+      if (lastChange == _id) {
+        add(FavoriteStarted());
+      }
+    });
+  }
 
   Future<void> _getValue(FavoriteStarted event, Emitter<FavoriteState> emit) async {
     emit(FavoriteLoading());
@@ -37,6 +49,12 @@ class FavoritesViewModel extends Bloc<FavoriteEvent, FavoriteState> {
       },
     );
   }
+
+  @override
+  Future<void> close() {
+    _subscription?.cancel();
+    return super.close();
+  }
 }
 
 sealed class FavoriteEvent {}
@@ -44,6 +62,8 @@ sealed class FavoriteEvent {}
 class FavoriteStarted extends FavoriteEvent {}
 
 class FavoriteToggle extends FavoriteEvent {}
+
+class FavoriteChangeListen extends FavoriteEvent {}
 
 sealed class FavoriteState {}
 
