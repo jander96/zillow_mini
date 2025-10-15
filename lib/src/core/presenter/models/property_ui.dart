@@ -2,7 +2,7 @@
 import 'dart:math';
 
 import 'package:flutter_svg/svg.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:zillow_mini/resources/resources.dart' show AppIcons;
 import 'package:zillow_mini/src/core/domain/models/property.dart';
 import 'package:zillow_mini/src/core/domain/models/property_type.dart';
@@ -50,7 +50,7 @@ class PropertyUI {
     image: property.image,
     description: property.description,
     formatedCreatedAt: property.createdAt.toShortDate,
-    latLng: LatLng(property.lat, property.long),
+    latLng: LatLng(lat:property.lat, long: property.long),
     id: property.id,
     type: property.type,
     typeIcon: switch (property.type) {
@@ -70,4 +70,12 @@ class PropertyUI {
     laundryRoom: Random().nextInt(10) +1,
     otherFacilities: Random().nextInt(10) +1,
   );
+}
+
+
+class LatLng {
+  final double lat;
+  final double long;
+
+  LatLng({required this.lat, required this.long});
 }

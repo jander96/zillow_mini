@@ -15,12 +15,9 @@ dependencies:
   json_annotation: ^4.9.0
   retrofit: ^4.4.0
   dio: ^5.3.2
-  google_maps_flutter: ^2.12.1
   intl: ^0.19.0
   shared_preferences: ^2.5.3
   flutter_bloc: ^9.1.0
-  bloc_test: ^10.0.0
-  rxdart: ^0.28.0
   fpdart: ^1.1.1
   injectable: ^2.5.0
   get_it: ^8.0.3
@@ -41,7 +38,6 @@ dev_dependencies:
   injectable_generator: ^2.7.0
   flutter_gen_runner: ^5.10.0
   mockito: ^5.4.6
-  bloc_test: ^10.0.0
   http_mock_adapter: ^0.6.1
   flutter_launcher_icons: "^0.14.4"
 
