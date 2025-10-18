@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zillow_mini/src/core/data/app_error.dart';
 import 'package:zillow_mini/src/features/favorites/domain/favorites_repo.dart';

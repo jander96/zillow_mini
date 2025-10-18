@@ -1,0 +1,90 @@
+[
+  {
+    "id": "1",
+    "email": "john.doe@example.com",
+    "name": "John Doe",
+    "password": "123456",
+    "role": "admin",
+    "image": "https://api.dicebear.com/8.x/avataaars/png?seed=John%20Doe"
+  },
+  {
+    "id": "11",
+    "email": "jander@test.com",
+    "name": "Jander Laffita",
+    "password": "123456",
+    "role": "admin",
+    "image": "https://api.dicebear.com/8.x/avataaars/png?seed=Jander%20Laffita"
+  },
+  {
+    "id": "2",
+    "email": "jane.smith@example.com",
+    "name": "Jane Smith",
+    "password": "password123",
+    "role": "user",
+    "image": "https://api.dicebear.com/8.x/avataaars/png?seed=Jane%20Smith"
+  },
+  {
+    "id": "3",
+    "email": "maria.garcia@example.com",
+    "name": "Maria Garcia",
+    "password": "maria2025",
+    "role": "user",
+    "image": "https://api.dicebear.com/8.x/avataaars/png?seed=Maria%20Garcia"
+  },
+  {
+    "id": "4",
+    "email": "peter.johnson@example.com",
+    "name": "Peter Johnson",
+    "password": "securePass!",
+    "role": "admin",
+    "image": "https://api.dicebear.com/8.x/avataaars/png?seed=Peter%20Johnson"
+  },
+  {
+    "id": "5",
+    "email": "sofia.lee@example.com",
+    "name": "Sofia Lee",
+    "password": "lee_sofia",
+    "role": "user",
+    "image": "https://api.dicebear.com/8.x/avataaars/png?seed=Sofia%20Lee"
+  },
+  {
+    "id": "6",
+    "email": "carlos.mendez@example.com",
+    "name": "Carlos Mendez",
+    "password": "cmendez789",
+    "role": "user",
+    "image": "https://api.dicebear.com/8.x/avataaars/png?seed=Carlos%20Mendez"
+  },
+  {
+    "id": "7",
+    "email": "linda.torres@example.com",
+    "name": "Linda Torres",
+    "password": "lindaTorres1",
+    "role": "admin",
+    "image": "https://api.dicebear.com/8.x/avataaars/png?seed=Linda%20Torres"
+  },
+  {
+    "id": "8",
+    "email": "roberto.ramos@example.com",
+    "name": "Roberto Ramos",
+    "password": "robertoR!",
+    "role": "user",
+    "image": "https://api.dicebear.com/8.x/avataaars/png?seed=Roberto%20Ramos"
+  },
+  {
+    "id": "9",
+    "email": "emma.wilson@example.com",
+    "name": "Emma Wilson",
+    "password": "emma2024",
+    "role": "user",
+    "image": "https://api.dicebear.com/8.x/avataaars/png?seed=Emma%20Wilson"
+  },
+  {
+    "id": "10",
+    "email": "david.nguyen@example.com",
+    "name": "David Nguyen",
+    "password": "nguyen_d",
+    "role": "admin",
+    "image": "https://api.dicebear.com/8.x/avataaars/png?seed=David%20Nguyen"
+  }
+]

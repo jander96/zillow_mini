@@ -1,9 +1,12 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zillow_mini/environments.dart';
+import 'package:zillow_mini/src/core/data/network/api/jwt_iterceptor.dart';
+import 'package:zillow_mini/src/di.dart';
 
 import 'data/network/api/client.dart';
 
@@ -17,6 +20,9 @@ abstract class ApiClientModule {
 
   @lazySingleton
   SharedPreferencesAsync get sharePreferences => SharedPreferencesAsync();
+
+  @singleton
+  FlutterSecureStorage get secureStorage => FlutterSecureStorage();
 }
 
 Dio _createDio() {
@@ -35,6 +41,7 @@ Dio _createDio() {
 
   dio.interceptors.addAll([
     LogInterceptor(requestBody: true, responseBody: true),
+    JWTInterceptor(getIt.get())
   ]);
 
   return dio;

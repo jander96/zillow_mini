@@ -13,6 +13,10 @@ class ConnectionError extends AppError {
   const ConnectionError({super.message}) : super(0);
 }
 
+class UnauthorizedError extends AppError {
+  const UnauthorizedError({super.message}) : super(401);
+}
+
 class RequestError extends AppError {
   const RequestError({super.message}) : super(400);
 }

@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:zillow_mini/src/core/presenter/extensions/context_extensions.dart';
 import 'package:zillow_mini/src/core/presenter/navigation/navigation.dart';
 import 'package:zillow_mini/src/di.dart';
-import 'package:zillow_mini/src/features/home/presenter/view/profile_avatar.dart';
+import 'package:zillow_mini/src/features/profile/presenter/view/profile_avatar.dart';
 import 'package:zillow_mini/src/features/home/presenter/view/properties_list_widget.dart';
 import 'package:zillow_mini/src/features/home/presenter/view/search_bar.dart';
 import 'package:zillow_mini/src/features/home/presenter/view_model/home_view_model.dart';

@@ -27,6 +27,7 @@ mixin ErrorHandler {
 
       return switch (statusCode) {
         400 => RequestError(message: response?.statusMessage),
+        401 => UnauthorizedError(message: response?.statusMessage),
         404 => NotFoundError(message: response?.statusMessage),
         500 => ServerError(message: response?.statusMessage),
         _ => switch (e.type) {

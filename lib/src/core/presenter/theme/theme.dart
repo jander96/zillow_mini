@@ -43,6 +43,8 @@ final ThemeData lightTheme = ThemeData(
 final ThemeData darkTheme = ThemeData(
   colorScheme: AppColor.darkColorScheme,
   useMaterial3: true,
+  fontFamily: AppTypography.fontFamily,
+  textTheme: AppTypography.textTheme,
   appBarTheme: AppBarTheme(
     backgroundColor: AppColor.darkColorScheme.primary,
     foregroundColor: AppColor.darkColorScheme.onPrimary,
