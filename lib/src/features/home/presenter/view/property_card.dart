@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart' show DefaultCacheManager;
+import 'package:zillow_mini/src/core/presenter/extensions/context_extensions.dart';
 import 'package:zillow_mini/src/core/presenter/models/property_ui.dart';
 import 'package:zillow_mini/src/features/favorites/presenter/view/favorite_icon.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -27,7 +29,7 @@ class PropertyCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  _TitleAndPrice(title: propertyUI.title, price: propertyUI.formatedPrice),
+                  _TitleAndPrice(title: propertyUI.title, price: propertyUI.localizedPrice(context)),
                   const SizedBox(height: 5),
                   _Subtitle(subtitle: propertyUI.city),
                   Divider(
@@ -64,6 +66,7 @@ class PropertyImage extends StatelessWidget {
         ClipRRect(
           borderRadius: const BorderRadius.only(topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
           child: CachedNetworkImage(
+            cacheManager: DefaultCacheManager(),
             imageUrl: imageUrl,
             cacheKey: imageUrl,
             height: 250,
@@ -124,7 +127,7 @@ class _Subtitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[Text(subtitle)]);
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: <Widget>[Text(context.l10n.city(subtitle))]);
     ;
   }
 }
@@ -148,9 +151,9 @@ class _FacilitiesGroup extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        _FacilityItem(icon: Icons.bed_outlined, label: '$bedrooms Bedroom'),
-        _FacilityItem(icon: Icons.bathtub_outlined, label: '$bedrooms Bathroom'),
-        _FacilityItem(icon: Icons.local_laundry_service_outlined, label: '$laundryRooms Laundry Room'),
+        _FacilityItem(icon: Icons.bed_outlined, label: context.l10n.bedroom(bedrooms)),
+        _FacilityItem(icon: Icons.bathtub_outlined, label: context.l10n.bathrooms(bedrooms)),
+        _FacilityItem(icon: Icons.local_laundry_service_outlined, label: context.l10n.laundryRoom(laundryRooms)),
         _OtherFacilitiesButton(count: otherFacilities),
       ],
     );
@@ -167,7 +170,7 @@ class _FacilityItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Icon(icon, color: Theme.of(context).colorScheme.onSurfaceVariant, size: 30),
+        Icon(icon, color: Theme.of(context).colorScheme.onSurfaceVariant, size: 24),
         const SizedBox(height: 4),
         Text(label, style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 12)),
       ],
@@ -185,8 +188,8 @@ class _OtherFacilitiesButton extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-          height: 30,
-          width: 30,
+          height: 24,
+          width: 24,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.onSurfaceVariant,
@@ -198,7 +201,7 @@ class _OtherFacilitiesButton extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
-        Text('Other Facilities', style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 12)),
+        Text(context.l10n.otherFacilities, style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 12)),
       ],
     );
   }

@@ -42,6 +42,6 @@ class PropertyDto {
     lat: lat,
     long: long,
     id: id,
-    type: PropertyType.random()
+    type: PropertyType.random(),
   );
 }

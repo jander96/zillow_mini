@@ -1,0 +1,82 @@
+{
+  "amenities": "Amenities",
+  "appLocale": "App language",
+  "bathrooms": "{p1} Bathroom",
+  "@bathrooms": {
+    "placeholders": {
+      "p1": {}
+    }
+  },
+  "baths": "Baths",
+  "bedroom": "{p1} Bedroom",
+  "@bedroom": {
+    "placeholders": {
+      "p1": {}
+    }
+  },
+  "beds": "Beds",
+  "cancel": "Cancel",
+  "chat": "Chat",
+  "city": "City: {p1}",
+  "@city": {
+    "placeholders": {
+      "p1": {}
+    }
+  },
+  "cityAZ": "City A-Z",
+  "cityZA": "City: Z-A",
+  "clean": "Clean",
+  "cleanCacheTitle": "Clean app cache",
+  "cleanFilters": "Clean filters",
+  "confirmClean": "Confirm Clean",
+  "confirmCleanDescription": "Are you sure you want to clear the application cache? This will delete your user data too",
+  "contactSeller": "Contact Seller",
+  "contactUs": "If you have any other query you can reach out to us.",
+  "currentLanguage": "Actual: {p1}",
+  "@currentLanguage": {
+    "placeholders": {
+      "p1": {}
+    }
+  },
+  "dreamProperty": "dream property",
+  "en": "English (US)",
+  "error": "Error",
+  "errorAuthorization": "You are not authorized to perform this action",
+  "errorConnection": "Please check your internet connexion",
+  "errorCredentials": "Email or password are incorrect",
+  "errorFilters": "There not found properties with this filters",
+  "errorRequest": "Your request could not be processed",
+  "errorServer": "The server is not responding",
+  "errorTimeout": "The response is taking too long",
+  "errorUnknown": "Something went wrong",
+  "es": "Spanish (ES)",
+  "findYour": "Find your \n",
+  "higherPrice": "Higher price ⬇️",
+  "highlights": "Highlights",
+  "home": "Home",
+  "laundryRoom": "{p1} Laundry Room",
+  "locateOnMap": "Locate on map",
+  "@laundryRoom": {
+    "placeholders": {
+      "p1": {}
+    }
+  },
+  "loadMore": "Load more",
+  "lowerPrice": "Lower price ⬆️",
+  "noMatches": "No matches",
+  "otherFacilities": "Other Facilities",
+  "retry": "Retry",
+  "search": "Search",
+  "searchYourProperty": "Search your property",
+  "settings": "Settings",
+  "specifications": "Specifications",
+  "squareArea": "{p1} Approx. Sq. Ft.",
+  "@squareArea": {
+    "placeholders": {
+      "p1": {}
+    }
+  },
+  "userProfile": "User Profile",
+  "viewPhone": "View Phone",
+  "whatsappUs": "WhatsApp Us"
+}

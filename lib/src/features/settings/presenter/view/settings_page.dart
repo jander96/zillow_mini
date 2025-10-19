@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:zillow_mini/src/core/presenter/localization/locale_switcher.dart';
 import 'package:zillow_mini/src/core/presenter/navigation/navigation.dart';
 import 'package:zillow_mini/src/core/presenter/theme/theme_switcher.dart';
+import 'package:zillow_mini/src/di.dart';
 import 'package:zillow_mini/src/features/profile/presenter/view/profile_header.dart';
+import 'package:zillow_mini/src/features/settings/presenter/view/cache_cleaner_tile.dart';
 import 'package:zillow_mini/src/features/settings/presenter/view/settings_list_tile.dart';
+import 'package:zillow_mini/src/core/presenter/extensions/context_extensions.dart';
+import 'package:zillow_mini/src/features/settings/presenter/view_model/cache_cleaner_view_model.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(create: (BuildContext context) => CacheCleanerViewModel(getIt.get()), child: _SettingsView());
+  }
+}
+
+class _SettingsView extends StatelessWidget {
+  const _SettingsView();
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +30,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
 
-      appBar: AppBar(
-          toolbarHeight: 0, backgroundColor: Colors.transparent, elevation: 0,
-        actions: [
-
-        ],
-      ),
+      appBar: AppBar(toolbarHeight: 0, backgroundColor: Colors.transparent, elevation: 0, actions: []),
 
       body: SingleChildScrollView(
         child: Column(
@@ -32,29 +42,21 @@ class SettingsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Settings',
+                    context.l10n.settings,
                     style: theme.textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: theme.colorScheme.onSurface,
                     ),
                   ),
-                  ThemeSwitcherAnimated(size: 28,),
+                  ThemeSwitcherAnimated(size: 28),
                 ],
               ),
             ),
 
-
-
             const ProfileHeader(),
+            LanguageSwitcherTile(),
+            CacheCleanerTile(),
 
-            SettingListTile(icon: Icons.person_outline, title: 'User Profile', onTap: () => context.goNamed(AppRoute.profile.name),),
-            SettingListTile(icon: Icons.lock_outline, title: 'Change Password'),
-            SettingListTile(icon: Icons.help_outline, title: 'FAQs'),
-            SettingListTile(
-              icon: Icons.notifications_none,
-              title: 'Push Notification',
-              trailing: Switch(value: true, onChanged: (bool value) {}, activeThumbColor: Colors.green),
-            ),
 
             const SizedBox(height: 20.0),
 
@@ -79,15 +81,15 @@ class ContactInfoBox extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'If you have any other query you can reach out to us.',
+            context.l10n.contactUs,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.primary),
           ),
           const SizedBox(height: 10.0),
           TextButton(
             onPressed: () {},
             child: Text(
-              'WhatsApp Us',
+              context.l10n.whatsappUs,
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                 color: Theme.of(context).colorScheme.primary,
                 fontWeight: FontWeight.bold,

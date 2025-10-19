@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zillow_mini/src/core/presenter/extensions/context_extensions.dart';
 
 class PropertyHighlightsSection extends StatelessWidget {
   const PropertyHighlightsSection({super.key});
@@ -8,8 +9,8 @@ class PropertyHighlightsSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Text(
-          'Highlights',
+         Text(
+          context.l10n.highlights,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         const SizedBox(height: 10),

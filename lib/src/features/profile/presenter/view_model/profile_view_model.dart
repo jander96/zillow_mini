@@ -19,4 +19,8 @@ class ProfileViewModel extends Cubit<UserUI?> {
       emit(user == null ? null : UserUI.fromDomain(user));
     });
   }
+
+  Future<void> checkUser() async {
+    _authRepo.me();
+  }
 }

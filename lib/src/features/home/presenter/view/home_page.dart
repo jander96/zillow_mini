@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:zillow_mini/src/core/presenter/extensions/context_extensions.dart';
 import 'package:zillow_mini/src/core/presenter/navigation/navigation.dart';
 import 'package:zillow_mini/src/di.dart';
-import 'package:zillow_mini/src/features/profile/presenter/view/profile_avatar.dart';
+import 'package:zillow_mini/src/features/filters/presenter/view/filters.dart';
+import 'package:zillow_mini/src/features/filters/presenter/view_model/cities_view_model.dart';
+import 'package:zillow_mini/src/features/filters/presenter/view_model/filters_view_model.dart';
 import 'package:zillow_mini/src/features/home/presenter/view/properties_list_widget.dart';
 import 'package:zillow_mini/src/features/home/presenter/view/search_bar.dart';
 import 'package:zillow_mini/src/features/home/presenter/view_model/home_view_model.dart';
@@ -14,7 +16,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (context) => HomeViewModel(getIt.get()), child: HomeContent());
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => HomeViewModel(getIt.get(), getIt.get())),
+        BlocProvider(create: (context) => FiltersViewModel(getIt.get())),
+        BlocProvider(create: (context) => CitiesViewModel(getIt.get())),
+      ],
+      child: HomeContent(),
+    );
   }
 }
 
@@ -31,26 +40,31 @@ class HomeContent extends StatelessWidget {
             onRefresh: () async => context.read<HomeViewModel>().pagingController.refresh(),
             child: CustomScrollView(
               slivers: [
-                SliverToBoxAdapter(child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(onPressed: (){
-                      context.showDeveloperContact();
-                    }, icon:  Icon(Icons.menu)),
-                    ProfileAvatar()
-
-                  ],
-                )),
-                SliverToBoxAdapter(child: SizedBox(height: 16),),
-                SliverPersistentHeader(delegate: TitlePersistenceHeader()),
-                SliverFloatingHeader(
-                  snapMode: FloatingHeaderSnapMode.overlay,
-                  child: AppSearchBar(
-                    onSearch: (query) {
-                      context.read<HomeViewModel>().search(query);
-                    },
+                SliverPadding(
+                  padding: EdgeInsets.all(8),
+                  sliver: SliverToBoxAdapter(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [SizedBox.shrink(), SortMenuButton()],
+                    ),
                   ),
                 ),
+                SliverPersistentHeader(delegate: TitlePersistenceHeader()),
+
+                SliverFloatingHeader(
+                  snapMode: FloatingHeaderSnapMode.overlay,
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: AppSearchBar(
+                      onSearch: (query) {
+                        context.read<FiltersViewModel>().setFilters((filters) => filters.copyWith(query: query));
+                      },
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(child: SizedBox(height: 16)),
+
+                SliverToBoxAdapter(child: CityFilterChips()),
                 PropertiesListWidget(
                   pagingController: context.read<HomeViewModel>().pagingController,
                   onPropertyClick: (property) {
@@ -71,10 +85,13 @@ class TitlePersistenceHeader extends SliverPersistentHeaderDelegate {
   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
     return RichText(
       text: TextSpan(
-        text: "Find your \n",
+        text: context.l10n.findYour,
         style: Theme.of(context).textTheme.bodyLarge?.copyWith(),
         children: [
-          TextSpan(text: "dream property", style: Theme.of(context).textTheme.displayMedium?.copyWith(fontWeight: FontWeight.w600)),
+          TextSpan(
+            text: context.l10n.dreamProperty,
+            style: Theme.of(context).textTheme.displayMedium?.copyWith(fontWeight: FontWeight.w600),
+          ),
         ],
       ),
     );
@@ -87,6 +104,5 @@ class TitlePersistenceHeader extends SliverPersistentHeaderDelegate {
   double get minExtent => 56;
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate)=> false;
-
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => false;
 }

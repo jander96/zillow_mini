@@ -27,13 +27,11 @@ class SettingListTile extends StatelessWidget {
       ),
       title: Text(
         title,
-        style: TextStyle(
+        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
           fontSize: 16.0,
           fontWeight: FontWeight.w400,
-          color: Theme.of(context).colorScheme.onSurface,
         ),
       ),
-      // El trailing puede ser una flecha (Icon) o un interruptor (Switch)
       trailing: trailing ?? const Icon(
         Icons.chevron_right,
         color: Colors.grey,

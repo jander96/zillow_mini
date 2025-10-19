@@ -63,7 +63,7 @@ class ContactButtonsRow extends StatelessWidget {
     return Row(
       children: <Widget>[
         _ContactButton(
-          label: 'Chat',
+          label: context.l10n.chat,
           icon: Icons.chat_bubble_outline,
           backgroundColor: Colors.green.shade500,
           foregroundColor: Theme.of(context).colorScheme.surface,
@@ -72,7 +72,7 @@ class ContactButtonsRow extends StatelessWidget {
         const SizedBox(width: 10),
 
         _ContactButton(
-          label: 'View Phone',
+          label: context.l10n.viewPhone,
           icon: Icons.phone_outlined,
           backgroundColor: Colors.grey.shade200,
           foregroundColor: Colors.black87,
@@ -81,7 +81,7 @@ class ContactButtonsRow extends StatelessWidget {
         const SizedBox(width: 10),
 
         _ContactButton(
-          label: 'Contact Seller',
+          label: context.l10n.contactSeller,
           icon: null,
           backgroundColor: Colors.blue.shade600,
           foregroundColor: Theme.of(context).colorScheme.surface,

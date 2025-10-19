@@ -17,8 +17,10 @@ abstract class Client {
   Future<List<PropertyDto>> getProperties({
     @Query('page') int? page,
     @Query('limit') int? limit,
-    @Query('title') String? title,
+    @Query('search') String? query,
     @Query('city') String? city,
+    @Query('sortBy') String? sortBy,
+    @Query('order') String? order,
   });
 
   @GET('/properties/{id}')

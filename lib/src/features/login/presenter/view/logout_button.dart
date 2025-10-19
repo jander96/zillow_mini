@@ -31,7 +31,7 @@ class LogoutButton extends StatelessWidget {
                   context.showSnackbar('Success logout');
                   break;
                 case LoginError():
-                  context.showSnackbar(state.error.getMessage());
+                  context.showSnackbar(state.error.getMessage(context, resourceContext: ResourceContext.auth));
                   break;
               }
             },

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zillow_mini/src/core/presenter/extensions/context_extensions.dart';
 
 class PropertyAmenitiesSection extends StatefulWidget {
   final List<Map<String, dynamic>> amenities;
@@ -19,8 +20,8 @@ class _PropertyAmenitiesSectionState extends State<PropertyAmenitiesSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Text(
-          'Amenities',
+        Text(
+          context.l10n.amenities,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         const SizedBox(height: 10),
@@ -49,8 +50,8 @@ class _PropertyAmenitiesSectionState extends State<PropertyAmenitiesSection> {
                 _showAllAmenities = true;
               });
             },
-            child: const Text(
-              'Load more',
+            child:  Text(
+              context.l10n.loadMore,
               style: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
             ),
           ),

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:zillow_mini/src/core/presenter/extensions/context_extensions.dart';
 
 class PropertySpecifications extends StatelessWidget {
   const PropertySpecifications({super.key, required this.bedrooms, required this.bathrooms});
@@ -34,19 +35,19 @@ class PropertySpecifications extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Specifications',
+        Text(
+          context.l10n.specifications,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),
         ),
         const SizedBox(height: 10),
         Row(
           children: <Widget>[
-            specItem(bedrooms.toString(), 'Beds'),
+            specItem(bedrooms.toString(), context.l10n.beds),
             dot,
-            specItem(bathrooms.toString(), 'Baths'),
+            specItem(bathrooms.toString(), context.l10n.baths),
             dot,
             Text(
-              '${(Random().nextDouble() * 10000).toStringAsFixed(2)} Approx. Sq. Ft.',
+              context.l10n.squareArea((Random().nextDouble() * 10000).toStringAsFixed(2)),
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black87),
             ),
           ],

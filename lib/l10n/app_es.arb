@@ -1,0 +1,81 @@
+{
+  "@@locale": "es",
+  "amenities": "Comodidades",
+  "appLocale": "Idioma de la Aplicación",
+  "bathrooms": "{p1} Baño",
+  "@bathrooms": {
+    "description": "Cantidad de baños",
+    "placeholders": {
+      "p1": {}
+    }
+  },
+  "baths": "Baños",
+  "bedroom": "{p1} Dormitorio",
+  "@bedroom": {
+    "description": "Cantidad de dormitorios",
+    "placeholders": {
+      "p1": {}
+    }
+  },
+  "beds": "Camas",
+  "cancel": "Cancelar",
+  "city": "Ciudad: {p1}",
+  "cityAZ": "Ciudad: A-Z",
+  "cityZA": "Ciudad: Z-A",
+  "@city": {
+    "placeholders": {
+      "p1": {}
+    }
+  },
+  "chat": "Chat",
+  "clean": "Limpiar",
+  "cleanCacheTitle": "Limpiar caché de la aplicación",
+  "cleanFilters": "Limpiar filtros",
+  "confirmClean": "Confirmar Limpieza",
+  "confirmCleanDescription": "¿Estás seguro de que quieres eliminar la caché de la aplicación? Esto eliminará tus datos de usuario tambien.",
+  "contactSeller": "Contactar al Vendedor",
+  "contactUs": "Si tienes cualquier otra consulta, puedes contactarnos.",
+  "dreamProperty": "propiedad soñada",
+  "en": "Inglés (US)",
+  "error": "Error",
+  "errorAuthorization": "No está autorizado para realizar esta acción",
+  "errorConnection": "Por favor, comprueba tu conexión a Internet",
+  "errorCredentials": "El correo electrónico o la contraseña son incorrectos",
+  "errorFilters": "No se encontraron propiedades con estos filtros",
+  "errorRequest": "No se pudo procesar la solicitud",
+  "errorServer": "El servidor no responde",
+  "errorTimeout": "La respuesta está tardando demasiado",
+  "errorUnknown": "Algo salió mal",
+  "es": "Español (ES)",
+  "findYour": "Encuentra tu \n",
+  "higherPrice": "Precio: Más alto ⬇️",
+  "highlights": "Aspectos Destacados",
+  "home": "Inicio",
+  "laundryRoom": "{p1} Cuarto de Lavado",
+  "@laundryRoom": {
+    "description": "Indica si tiene cuarto de lavado (ej: 1 Cuarto de Lavado)",
+    "placeholders": {
+      "p1": {}
+    }
+  },
+  "locateOnMap": "Localizar en el mapa",
+  "loadMore": "Cargar más",
+  "lowerPrice": "Precio: Más bajo ⬆️",
+  "noMatches": "Sin resultados",
+  "otherFacilities": "Otras Instalaciones",
+  "retry": "Reintentar",
+  "search": "Buscar",
+  "searchYourProperty": "Busca tu propiedad",
+  "settings": "Configuración",
+  "specifications": "Especificaciones",
+  "squareArea": "{p1} Aprox. Pies Cuadrados",
+  "@squareArea": {
+    "description": "Área aproximada en pies cuadrados",
+    "placeholders": {
+      "p1": {}
+    }
+  },
+  "userProfile": "Perfil de Usuario",
+  "viewPhone": "Ver Teléfono",
+  "whatsappUs": "Contáctanos por WhatsApp"
+}

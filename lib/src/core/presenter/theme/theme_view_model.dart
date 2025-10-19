@@ -4,7 +4,7 @@ import 'package:zillow_mini/src/core/domain/service/preference_service.dart';
 
 class ThemeViewModel extends Cubit<AppThemeMode> {
   ThemeViewModel(this._prefs) : super(AppThemeMode.light) {
-    init();
+    _init();
   }
 
   static const themeKey = 'theme_key';
@@ -16,7 +16,7 @@ class ThemeViewModel extends Cubit<AppThemeMode> {
     emit(newState);
   }
 
-  Future<void> init() async {
+  Future<void> _init() async {
     final theme = await _prefs.getValue<String>(themeKey);
     emit(AppThemeMode.fromName(theme));
   }

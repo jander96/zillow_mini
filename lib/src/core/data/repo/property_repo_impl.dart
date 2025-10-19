@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:zillow_mini/src/core/data/error_handler.dart';
 import 'package:zillow_mini/src/core/data/network/api/client.dart';
+import 'package:zillow_mini/src/core/data/network/model/property_dto.dart';
 import 'package:zillow_mini/src/core/domain/models/property.dart';
 import 'package:zillow_mini/src/core/domain/repo/property_repo.dart';
 
@@ -11,11 +12,32 @@ class PropertyRepoImp extends PropertyRepo with ErrorHandler {
   PropertyRepoImp({required this.client});
 
   @override
-  Future<List<Property>> getProperties({int? page, int? limit, String? query}) async {
+  Future<List<Property>> getProperties({
+    int? page,
+    int? limit,
+    String? query,
+    String? city,
+    PropertySortBy? sortBy,
+  }) async {
     final response = await client.getProperties(
       page: page,
       limit: limit,
-      title: query?.isEmpty ?? false ? null : query,
+      query: query?.isEmpty ?? false ? null : query,
+      sortBy: switch(sortBy){
+        null => null,
+        PropertySortBy.priceAsc => 'price',
+        PropertySortBy.priceDesc => 'price',
+        PropertySortBy.cityAsc => 'city',
+        PropertySortBy.cityDesc => 'city',
+      },
+      order: switch(sortBy){
+        null => null,
+        PropertySortBy.priceAsc => 'asc',
+        PropertySortBy.priceDesc => 'desc',
+        PropertySortBy.cityAsc => 'asc',
+        PropertySortBy.cityDesc => 'desc',
+      },
+      city: city,
     );
     return response.map((e) => e.toDomain()).toList();
   }

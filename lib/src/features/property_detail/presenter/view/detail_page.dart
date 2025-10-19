@@ -107,7 +107,7 @@ class _PropertyViewState extends State<_PropertyView> {
                     const SizedBox(height: 5),
                     PropertyAddress(city: widget.property.city),
                     const SizedBox(height: 10),
-                    PropertyPrice(price: widget.property.formatedPrice),
+                    PropertyPrice(price: widget.property.localizedPrice(context)),
                     const SizedBox(height: 20),
                     PropertySpecifications(bedrooms: widget.property.bathrooms, bathrooms: widget.property.bathrooms),
                     const SizedBox(height: 10),

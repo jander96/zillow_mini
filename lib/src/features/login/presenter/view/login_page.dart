@@ -6,6 +6,7 @@ import 'package:zillow_mini/src/core/presenter/extensions/error_extensions.dart'
 import 'package:zillow_mini/src/core/presenter/navigation/navigation.dart';
 import 'package:zillow_mini/src/core/presenter/theme/color.dart';
 import 'package:zillow_mini/src/core/presenter/validators/validatos.dart';
+import 'package:zillow_mini/src/core/presenter/widgets/unfocuser.dart';
 import 'package:zillow_mini/src/di.dart';
 import 'package:zillow_mini/src/features/login/presenter/view_view_model/login_view_model.dart';
 
@@ -25,10 +26,12 @@ class _LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      body: SingleChildScrollView(
-        child: Column(children: [_TopGradientSection(), _LoginForm(), _SocialLoginButtons()]),
+    return Unfocuser(
+      child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.surface,
+        body: SingleChildScrollView(
+          child: Column(children: [_TopGradientSection(), _LoginForm(), _SocialLoginButtons()]),
+        ),
       ),
     );
   }
@@ -103,7 +106,7 @@ class _LoginFormState extends State<_LoginForm> {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 backgroundColor: Theme.of(context).colorScheme.errorContainer.withValues(alpha: .6),
-                content: Text(state.error.getMessage()),
+                content: Text(state.error.getMessage(context, resourceContext: ResourceContext.auth)),
               ),
             );
             break;
@@ -127,6 +130,7 @@ class _LoginFormState extends State<_LoginForm> {
               children: [
                 TextFormField(
                   controller: _emailController,
+                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     hintText: 'Email',
                     border: const UnderlineInputBorder(),
@@ -143,6 +147,7 @@ class _LoginFormState extends State<_LoginForm> {
                   builder: (_, isVisible, _) {
                     return TextFormField(
                       controller: _passwordController,
+                      keyboardType: TextInputType.text,
                       obscureText: !isVisible,
                       decoration: InputDecoration(
                         hintText: 'Password',

@@ -1,6 +1,7 @@
 
 import 'dart:math';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:zillow_mini/resources/resources.dart' show AppIcons;
@@ -12,7 +13,7 @@ import 'package:zillow_mini/src/core/presenter/extensions/datetime_extensions.da
 class PropertyUI {
   final String title;
   final String city;
-  final String formatedPrice;
+  final double price;
   final String image;
   final String description;
   final String formatedCreatedAt;
@@ -28,7 +29,7 @@ class PropertyUI {
   const PropertyUI({
     required this.title,
     required this.city,
-    required this.formatedPrice,
+    required this.price,
     required this.image,
     required this.description,
     required this.formatedCreatedAt,
@@ -46,7 +47,7 @@ class PropertyUI {
   factory PropertyUI.fromDomain(Property property) => PropertyUI(
     title: property.title,
     city: property.city,
-    formatedPrice: double.parse(property.price).toUSD,
+    price: double.parse(property.price),
     image: property.image,
     description: property.description,
     formatedCreatedAt: property.createdAt.toShortDate,
@@ -70,6 +71,10 @@ class PropertyUI {
     laundryRoom: Random().nextInt(10) +1,
     otherFacilities: Random().nextInt(10) +1,
   );
+
+  String localizedPrice(BuildContext context) {
+    return price.localizePrice(context);
+  }
 }
 
 

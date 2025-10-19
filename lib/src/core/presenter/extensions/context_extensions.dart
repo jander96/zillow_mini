@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zillow_mini/l10n/app_localizations.dart';
 
 extension DeveloperContact on BuildContext {
   void showDeveloperContact() {
@@ -17,4 +18,6 @@ extension DeveloperContact on BuildContext {
       ),
     );
   }
+
+  AppLocalizations get l10n => AppLocalizations.of(this)!;
 }

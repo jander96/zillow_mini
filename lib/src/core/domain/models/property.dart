@@ -40,3 +40,11 @@ class Property with _$Property {
   });
 }
 
+enum PropertySortBy {
+  priceAsc,
+  priceDesc,
+  cityAsc,
+  cityDesc
+}
+
+

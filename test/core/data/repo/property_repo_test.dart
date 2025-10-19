@@ -37,12 +37,12 @@ void main() {
       when(mockClient.getProperties(
         page: anyNamed('page'),
         limit: anyNamed('limit'),
-        title: anyNamed('title'),
+        query: anyNamed('title'),
       )).thenAnswer((_) async => mockDtos);
 
       final result = await repository.getProperties(page: 1, limit: 10, query: 'test');
 
-      verify(mockClient.getProperties(page: 1, limit: 10, title: 'test')).called(1);
+      verify(mockClient.getProperties(page: 1, limit: 10, query: 'test')).called(1);
 
       expect(result, isA<List<Property>>());
       expect(result.length, 2);
@@ -51,18 +51,18 @@ void main() {
 
     test('It should pass null to the client when the query is empty.', () async {
       when(mockClient.getProperties(
-        title: anyNamed('title'),
+        query: anyNamed('title'),
       )).thenAnswer((_) async => []);
       await repository.getProperties(query: '');
-      verify(mockClient.getProperties(title: null)).called(1);
+      verify(mockClient.getProperties(query: null)).called(1);
     });
 
     test('Should pass null to the client when the query is null.', () async {
       when(mockClient.getProperties(
-        title: anyNamed('title'),
+        query: anyNamed('title'),
       )).thenAnswer((_) async => []);
       await repository.getProperties(query: null);
-      verify(mockClient.getProperties(title: null)).called(1);
+      verify(mockClient.getProperties(query: null)).called(1);
     });
   });
 

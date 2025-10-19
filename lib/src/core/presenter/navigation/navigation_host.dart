@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:zillow_mini/src/core/presenter/extensions/context_extensions.dart';
+import 'package:zillow_mini/src/core/presenter/widgets/unfocuser.dart';
 
 class NavigationHost extends StatelessWidget {
   const NavigationHost({super.key, required this.child, required this.children});
@@ -17,35 +19,37 @@ class NavigationHost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final tabs = [(Icons.home, "Home"), (Icons.settings, "Settings")];
-    return Scaffold(
-      extendBody: true,
-      extendBodyBehindAppBar: true,
-      body: SafeArea(child: AnimatedBranchContainer(currentIndex: child.currentIndex, children: children),),
-      bottomNavigationBar: AnimatedBottomNavigationBar.builder(
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        tabBuilder: (index, isActive) {
-          final (icon ,label)= tabs[index];
-          return Column(
-            children: [
-              Icon(
-                icon,
-                color: isActive ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onSurfaceVariant,
-              ),
-              Text(label, style: Theme.of(context).textTheme.bodySmall,)
-            ],
-          );
-        },
-        blurEffect: true,
-        activeIndex: child.currentIndex,
-        gapWidth: 12,
-        gapLocation: GapLocation.center,
-        notchSmoothness: NotchSmoothness.verySmoothEdge,
-        leftCornerRadius: 32,
-        rightCornerRadius: 32,
-        onTap: _onTap,
-        itemCount: tabs.length,
-        //other params
+    final tabs = [(Icons.home, context.l10n.home), (Icons.settings, context.l10n.settings)];
+    return Unfocuser(
+      child: Scaffold(
+        extendBody: true,
+        extendBodyBehindAppBar: true,
+        body: SafeArea(child: AnimatedBranchContainer(currentIndex: child.currentIndex, children: children),),
+        bottomNavigationBar: AnimatedBottomNavigationBar.builder(
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          tabBuilder: (index, isActive) {
+            final (icon ,label)= tabs[index];
+            return Column(
+              children: [
+                Icon(
+                  icon,
+                  color: isActive ? Theme.of(context).colorScheme.primary : Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
+                Text(label, style: Theme.of(context).textTheme.bodySmall,)
+              ],
+            );
+          },
+          blurEffect: true,
+          activeIndex: child.currentIndex,
+          gapWidth: 12,
+          gapLocation: GapLocation.center,
+          notchSmoothness: NotchSmoothness.verySmoothEdge,
+          leftCornerRadius: 32,
+          rightCornerRadius: 32,
+          onTap: _onTap,
+          itemCount: tabs.length,
+          //other params
+        ),
       ),
     );
   }

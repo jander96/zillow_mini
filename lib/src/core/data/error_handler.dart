@@ -6,7 +6,6 @@ import 'package:fpdart/fpdart.dart';
 import 'package:zillow_mini/src/core/data/app_error.dart';
 
 mixin ErrorHandler {
-
   Future<Either<AppError, R>> runCatching<R>(Future<R> Function() task) async {
     try {
       final result = await task();
@@ -44,5 +43,57 @@ mixin ErrorHandler {
     }
 
     return UnknownError(message: e.toString());
+  }
+}
+
+extension DioErrorMapper on DioException {
+  AppError toAppError() {
+    AppError error = UnknownError();
+
+    switch (this.type) {
+      case DioExceptionType.connectionTimeout:
+        error = TimeoutError();
+        break;
+      case DioExceptionType.sendTimeout:
+        error = TimeoutError();
+        break;
+      case DioExceptionType.receiveTimeout:
+        error = TimeoutError();
+        break;
+      case DioExceptionType.badResponse:
+        final statusCode = response?.statusCode;
+        switch (statusCode) {
+          case 400:
+            error = RequestError(message: message);
+            break;
+          case 401:
+            error = UnauthorizedError(message: message);
+            break;
+          case 404:
+            error = NotFoundError(message: message);
+            break;
+          case 500:
+            error = ServerError(message: message);
+            break;
+          default:
+            error = UnknownError(message: message);
+            break;
+        }
+        break;
+      case DioExceptionType.connectionError:
+        error = ConnectionError();
+        break;
+      case DioExceptionType.unknown:
+        error = UnknownError();
+        break;
+      case DioExceptionType.badCertificate:
+        error = ConnectionError();
+        break;
+      case DioExceptionType.cancel:
+        error = UnknownError();
+        break;
+    }
+
+    return error;
   }
 }

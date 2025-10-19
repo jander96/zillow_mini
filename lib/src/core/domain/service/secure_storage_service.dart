@@ -5,5 +5,5 @@ abstract class SecureStorageService {
 
   Future<void> remove(String key);
 
-  Future<void> clean();
+  Future<void> clear();
 }

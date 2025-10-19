@@ -9,7 +9,7 @@ class SecureStorageServiceImpl extends SecureStorageService {
   final FlutterSecureStorage _storage;
 
   @override
-  Future<void> clean() async {
+  Future<void> clear() async {
     return _storage.deleteAll();
   }
 

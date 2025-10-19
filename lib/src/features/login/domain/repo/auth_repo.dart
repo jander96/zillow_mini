@@ -13,6 +13,8 @@ abstract class AuthRepo {
 
   Stream<User?> get currentUser;
 
+  User? get user;
+
   Future<UserEither> me();
 
   Future<AuthEither> login(AuthRequest credentials);

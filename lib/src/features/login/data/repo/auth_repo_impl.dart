@@ -33,6 +33,9 @@ class AuthRepoImpl implements AuthRepo {
   Stream<User?> get currentUser => _userController.stream.transform(_mapperTransformer);
 
   @override
+  User? get user => _userController.value?.toDomain();
+
+  @override
   Future<AuthEither> login(AuthRequest credentials) async {
     try {
       final users = await _loadMockUsers();
@@ -61,6 +64,7 @@ class AuthRepoImpl implements AuthRepo {
     try {
       final token = await _secureStorage.getValue(tokeKey);
       if (token == null) {
+        _userController.add(null);
         return Left(UnauthorizedError());
       }
       final id = _securityService.verifyToken(token).payload['id'];
