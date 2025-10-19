@@ -79,3 +79,24 @@ Por ejemplo:
 ]
 
 ```
+
+<p align="center">
+  <img src="screenshots/photo_2025-10-19 12.36.03.jpeg" alt="Descripción de la Característica 1" width="48%">
+  &nbsp; &nbsp; <img src="screenshots/photo_2025-10-19 12.36.08.jpeg" alt="Descripción de la Característica 2" width="48%">
+</p>
+
+<p align="center">
+  <figcaption>Fig. 1: Vista principal de la aplicación. | Fig. 2: Deslizador de precios.</figcaption>
+</p>
+
+---
+
+<p align="center">
+  <img src="screenshots/photo_2025-10-19 12.36.11.jpeg" alt="Descripción de la Característica 3" width="48%">
+  &nbsp; &nbsp;
+  <img src="screenshots/photo_2025-10-19 12.36.14.jpeg" alt="Descripción de la Característica 4" width="48%">
+</p>
+
+<p align="center">
+  <figcaption>Fig. 3: Estado vacío sin resultados. | Fig. 4: Manejo de error de red.</figcaption>
+</p>
