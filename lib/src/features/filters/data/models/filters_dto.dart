@@ -15,8 +15,11 @@ class FiltersDto with _$FiltersDto {
   final String? query;
   @override
   final String? city;
+  final double? minPrice;
+  final double? maxPrice;
 
-  FiltersDto({this.sortBy, this.query, this.city});
+
+  FiltersDto({this.sortBy, this.query, this.city, this.minPrice, this.maxPrice});
 
   factory FiltersDto.fromJson(Map<String, dynamic> json) => _$FiltersDtoFromJson(json);
 

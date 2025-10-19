@@ -13,7 +13,7 @@ final ThemeData lightTheme = ThemeData(
     iconTheme: IconThemeData(color: AppColor.lightColorScheme.onPrimary),
     elevation: 0,
     actionsPadding: EdgeInsets.only(right: 8),
-  ),
+  ),sliderTheme: SliderThemeData(trackHeight: 1,  ),
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: AppColor.lightColorScheme.primary,
     foregroundColor: AppColor.lightColorScheme.onPrimary,

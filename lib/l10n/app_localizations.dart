@@ -344,6 +344,12 @@ abstract class AppLocalizations {
   /// **'Other Facilities'**
   String get otherFacilities;
 
+  /// No description provided for @priceRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Price Range'**
+  String get priceRange;
+
   /// No description provided for @retry.
   ///
   /// In en, this message translates to:

@@ -18,6 +18,8 @@ class PropertyRepoImp extends PropertyRepo with ErrorHandler {
     String? query,
     String? city,
     PropertySortBy? sortBy,
+    double? minPrice,
+    double? maxPrice,
   }) async {
     final response = await client.getProperties(
       page: page,
@@ -38,6 +40,7 @@ class PropertyRepoImp extends PropertyRepo with ErrorHandler {
         PropertySortBy.cityDesc => 'desc',
       },
       city: city,
+      price: minPrice != null && maxPrice != null ? '$minPrice-$maxPrice' : null,
     );
     return response.map((e) => e.toDomain()).toList();
   }

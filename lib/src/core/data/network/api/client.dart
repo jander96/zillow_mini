@@ -21,6 +21,7 @@ abstract class Client {
     @Query('city') String? city,
     @Query('sortBy') String? sortBy,
     @Query('order') String? order,
+    @Query('price') String? price,
   });
 
   @GET('/properties/{id}')

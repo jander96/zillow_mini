@@ -21,12 +21,17 @@ class HomeViewModel extends Cubit<PagingState<int, PropertyUI>> {
   String? _query;
   PropertySortBy? _sortBy;
   String? _city;
+  double? _minPrice;
+  double? _maxPrice;
+
 
   void _listenFiltersChanges() {
     _filtersSubscription = _filtersRepo.currentFilters.listen((filters) {
       _query = filters.query;
       _sortBy = filters.sortBy;
       _city = filters.city;
+      _minPrice = filters.minPrice;
+      _maxPrice = filters.maxPrice;
       pagingController.refresh();
     });
   }
@@ -40,6 +45,8 @@ class HomeViewModel extends Cubit<PagingState<int, PropertyUI>> {
       query: _query,
       sortBy: _sortBy,
       city: _city,
+      minPrice: _minPrice,
+      maxPrice: _maxPrice,
     )).map((_toUI)).toList(),
   );
 

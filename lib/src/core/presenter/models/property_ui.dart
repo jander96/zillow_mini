@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -41,8 +40,24 @@ class PropertyUI {
     required this.bathrooms,
     required this.laundryRoom,
     required this.otherFacilities,
-
   });
+
+  factory PropertyUI.empty() => PropertyUI(
+    title: '',
+    city: '',
+    price: 0,
+    image: 'https://api.dicebear.com/8.x/avataaars/png?seed=Jander%20Laffita',
+    description: '',
+    formatedCreatedAt: '',
+    latLng: LatLng(lat: 0, long: 0),
+    id: '',
+    type: PropertyType.condo,
+    typeIcon: SvgPicture.asset(AppIcons.beachChairSummerSvgrepoCom),
+    bedrooms: 1,
+    bathrooms: 1,
+    laundryRoom: 1,
+    otherFacilities: 1,
+  );
 
   factory PropertyUI.fromDomain(Property property) => PropertyUI(
     title: property.title,
@@ -51,7 +66,7 @@ class PropertyUI {
     image: property.image,
     description: property.description,
     formatedCreatedAt: property.createdAt.toShortDate,
-    latLng: LatLng(lat:property.lat, long: property.long),
+    latLng: LatLng(lat: property.lat, long: property.long),
     id: property.id,
     type: property.type,
     typeIcon: switch (property.type) {
@@ -66,17 +81,16 @@ class PropertyUI {
       PropertyType.cabin => SvgPicture.asset(AppIcons.cabinSvgrepoCom),
       PropertyType.farmHouse => SvgPicture.asset(AppIcons.ecologyEnergyHouseFarmHouseGreenHouseSvgrepoCom),
     },
-    bedrooms: Random().nextInt(10) +1,
-    bathrooms: Random().nextInt(10) +1,
-    laundryRoom: Random().nextInt(10) +1,
-    otherFacilities: Random().nextInt(10) +1,
+    bedrooms: Random().nextInt(10) + 1,
+    bathrooms: Random().nextInt(10) + 1,
+    laundryRoom: Random().nextInt(10) + 1,
+    otherFacilities: Random().nextInt(10) + 1,
   );
 
   String localizedPrice(BuildContext context) {
     return price.localizePrice(context);
   }
 }
-
 
 class LatLng {
   final double lat;

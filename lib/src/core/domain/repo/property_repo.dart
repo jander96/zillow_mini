@@ -11,7 +11,9 @@ abstract class PropertyRepo {
     int? limit,
     String? query,
     String? city,
-    PropertySortBy? sortBy
+    PropertySortBy? sortBy,
+    double? minPrice,
+    double? maxPrice,
   });
 
   Future<PropertyEither> getProperty(String id);

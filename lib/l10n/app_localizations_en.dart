@@ -145,6 +145,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get otherFacilities => 'Other Facilities';
 
   @override
+  String get priceRange => 'Price Range';
+
+  @override
   String get retry => 'Retry';
 
   @override

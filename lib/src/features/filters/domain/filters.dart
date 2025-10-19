@@ -11,7 +11,12 @@ class Filters  with _$Filters{
   @override
   final String? city;
 
-  Filters({ this.sortBy,  this.query,  this.city});
+  @override
+  final double? minPrice;
+  @override
+  final double? maxPrice;
+
+  Filters({ this.sortBy,  this.query,  this.city,this.minPrice , this.maxPrice});
 
   int get count {
     final active = [

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:zillow_mini/src/core/presenter/extensions/context_extensions.dart';
 import 'package:zillow_mini/src/core/presenter/models/property_ui.dart';
+import 'package:zillow_mini/src/core/presenter/theme/color.dart';
 import 'package:zillow_mini/src/di.dart';
 import 'package:zillow_mini/src/features/property_detail/presenter/view/amenities_section.dart';
 import 'package:zillow_mini/src/features/property_detail/presenter/view/contact_buttons.dart';
@@ -36,7 +38,7 @@ class PropertyDetailContent extends StatelessWidget {
         return Scaffold(
           body: switch (state) {
             PropertyDetailInitial() => SizedBox.shrink(),
-            PropertyDetailLoading() => Center(child: CircularProgressIndicator()),
+            PropertyDetailLoading() => Shimmer.fromColors(baseColor: Colors.grey, highlightColor: Colors.blueGrey, child: _PropertyView(property: PropertyUI.empty())),
             PropertyDetailLoaded() => _PropertyView(property: state.property),
             PropertyDetailError() => Text(state.error.toString()),
           },

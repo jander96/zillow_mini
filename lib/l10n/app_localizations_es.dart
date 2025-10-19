@@ -146,6 +146,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get otherFacilities => 'Otras Instalaciones';
 
   @override
+  String get priceRange => 'Rango de Precios';
+
+  @override
   String get retry => 'Reintentar';
 
   @override

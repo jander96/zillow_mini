@@ -62,8 +62,8 @@ class HomeContent extends StatelessWidget {
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(child: SizedBox(height: 16)),
 
+                SliverToBoxAdapter(child: PriceRangeSlider()),
                 SliverToBoxAdapter(child: CityFilterChips()),
                 PropertiesListWidget(
                   pagingController: context.read<HomeViewModel>().pagingController,

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:zillow_mini/src/core/data/app_error.dart';
 import 'package:zillow_mini/src/core/data/error_handler.dart';
 import 'package:zillow_mini/src/core/presenter/extensions/error_extensions.dart';
@@ -28,12 +29,20 @@ class _PropertiesListWidgetState extends State<PropertiesListWidget> with ErrorH
   Widget build(BuildContext context) {
     return PagingListener(
       controller: widget.pagingController,
-      builder: (context, state, fetchNextPage) => PagedSliverList<int, PropertyUI>.separated(
+      builder: (context, state, fetchNextPage) =>
+      PagedSliverList<int, PropertyUI>.separated(
         state: state,
         fetchNextPage: fetchNextPage,
         builderDelegate: PagedChildBuilderDelegate(
           animateTransitions: true,
           itemBuilder: (context, property, index) => PropertyCard(propertyUI: property, onTap: widget.onPropertyClick),
+          firstPageProgressIndicatorBuilder: (context) {
+           return Shimmer.fromColors(baseColor: Colors.grey,
+                highlightColor: Colors.blueGrey,
+                child: PropertyCard(propertyUI: PropertyUI.empty(), onTap: (value) {
+
+                },));
+          },
           firstPageErrorIndicatorBuilder: (context) {
             late Widget child;
             switch (widget.pagingController.error!) {
