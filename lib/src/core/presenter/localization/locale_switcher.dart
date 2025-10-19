@@ -36,7 +36,7 @@ class LanguageSwitcherTile extends StatelessWidget {
                   isSelected: currentLocale.id == 'en_US',
                   onTap: () => viewModel.changeLocale('en', 'US'),
                 ),
-                const SizedBox(width: 16),
+                const SizedBox(width: 8),
                 _LanguageFlag(
                   flag: '🇪🇸',
                   isSelected: currentLocale.languageCode == 'es',
@@ -67,7 +67,7 @@ class _LanguageFlag extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(8), child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(2),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 400),
           curve: Curves.easeInOut,
