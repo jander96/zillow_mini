@@ -86,7 +86,7 @@ Por ejemplo:
 </p>
 
 <p align="center">
-  <figcaption>Fig. 1: Vista principal de la aplicación. | Fig. 2: Deslizador de precios.</figcaption>
+  <figcaption></figcaption>
 </p>
 
 ---
@@ -98,5 +98,5 @@ Por ejemplo:
 </p>
 
 <p align="center">
-  <figcaption>Fig. 3: Estado vacío sin resultados. | Fig. 4: Manejo de error de red.</figcaption>
+  <figcaption></figcaption>
 </p>
